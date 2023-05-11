@@ -1,7 +1,7 @@
-from flask import Flask, jsonify, request
-import textrazor
+from flask import Flask, jsonify, request, Response
 import requests
 from youtube_transcript_api import YouTubeTranscriptApi
+from flask_cors import CORS
 
 
 def summarize_my_video(video_id):
@@ -24,7 +24,7 @@ def summarize_my_video(video_id):
     payload = {
         'key': '5839bdeacab27ff1c1a4035576b7c805',
         'txt': transcript_text,
-        'sentences': 5
+        'sentences': 10
     }
 
     response = requests.post(url, data=payload)
@@ -50,11 +50,14 @@ def get_youtube_video_id(link):
 
 
 app = Flask(__name__)
+cors = CORS(app)
 
 
-@app.route('/summarize/', methods=['GET', 'POST'])
+@ app.route('/', methods=['POST'])
 def summarize():
-    youtube_link = request.args.get('link')
+
+    data = request.get_json()
+    youtube_link = data['link']
 
     video_id = get_youtube_video_id(youtube_link)
     summary = summarize_my_video(video_id)

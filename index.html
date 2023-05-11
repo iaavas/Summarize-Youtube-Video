@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summarize Youtube Video</title>
+    <style>
+        /* Container styles */
+        .summary-container {
+          background-color: #f2f2f2;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          padding: 20px;
+          margin: 20px auto;
+          max-width: 800px;
+          font-family: Arial, sans-serif;
+          font-size: 16px;
+          line-height: 1.5;
+          color: #333;
+        }
+        
+        /* Heading styles */
+        .summary-container h2 {
+          font-size: 24px;
+          margin-top: 0;
+        }
+        
+        /* Text styles */
+        .summary-container p {
+          margin-top: 10px;
+        }
+      </style>
+</head>
+<body>
+    <div class="summary-container">
+        <h2>Summary</h2>
+        <label>Enter your video link</label>
+        <input type="text" id="my_link">
+        <p id="summary">Loading...</p>
+        <button id="getSmry">Click Me</button>
+      </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
