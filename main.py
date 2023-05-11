@@ -36,16 +36,9 @@ def summarize_my_video(video_id):
 
 def get_youtube_video_id(link):
     video_id = None
-    if 'youtube.com' in link:
-        query = link.split('?')[1]
-        params = query.split('&')
-        for param in params:
-            key_value = param.split('=')
-            if key_value[0] == 'v':
-                video_id = key_value[1]
-                break
-    elif 'youtu.be' in link:
-        video_id = link.split('/')[-1]
+
+    video_id = link.split('=')[1]
+
     return video_id
 
 
@@ -66,4 +59,4 @@ def summarize():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
