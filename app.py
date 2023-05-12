@@ -31,7 +31,7 @@ def summarize_my_video(video_id):
 
     summary = response.json()['summary']
 
-    return summary
+    return [summary, transcript_text]
 
 
 def get_youtube_video_id(link):
@@ -53,10 +53,10 @@ def summarize():
     youtube_link = data['link']
 
     video_id = get_youtube_video_id(youtube_link)
-    summary = summarize_my_video(video_id)
+    [summary, subtitles] = summarize_my_video(video_id)
 
-    return jsonify({'summary': summary})
+    return jsonify({"en-Captions": subtitles, "summary": summary})
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run()
