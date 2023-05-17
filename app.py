@@ -19,19 +19,26 @@ def summarize_my_video(video_id):
 
     transcript_text = ' '.join([entry['text'] for entry in transcript_entries])
 
-    url = "https://api.meaningcloud.com/summarization-1.0"
+    
+
+    url = "https://gpt-summarization.p.rapidapi.com/summarize"
 
     payload = {
-        'key': '5839bdeacab27ff1c1a4035576b7c805',
-        'txt': transcript_text,
-        'sentences': 10
+        "text": transcript_text,
+        "num_sentences": 7
+    }
+    headers = {
+	"content-type": "application/json",
+	"X-RapidAPI-Key": "81a195198bmsh8bbbd82fd4c08e9p1bb46bjsn520e87da5681",
+	"X-RapidAPI-Host": "gpt-summarization.p.rapidapi.com"
     }
 
-    response = requests.post(url, data=payload)
+    response = requests.post(url, json=payload, headers=headers)
 
-    summary = response.json()['summary']
+    summary = response.json()
+    
 
-    return [summary, transcript_text]
+    return summary
 
 
 def get_youtube_video_id(link):
@@ -53,9 +60,9 @@ def summarize():
     youtube_link = data['link']
 
     video_id = get_youtube_video_id(youtube_link)
-    [summary, subtitles] = summarize_my_video(video_id)
+    summary = summarize_my_video(video_id)
 
-    return jsonify({"en-Captions": subtitles, "summary": summary})
+    return jsonify(summary)
 
 
 if __name__ == '__main__':
