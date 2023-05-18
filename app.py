@@ -2,6 +2,8 @@ from flask import Flask, jsonify, request, Response
 import requests
 from youtube_transcript_api import YouTubeTranscriptApi
 from flask_cors import CORS
+from config import API_KEY
+
 
 
 def summarize_my_video(video_id):
@@ -29,7 +31,7 @@ def summarize_my_video(video_id):
     }
     headers = {
 	"content-type": "application/json",
-	"X-RapidAPI-Key": "81a195198bmsh8bbbd82fd4c08e9p1bb46bjsn520e87da5681",
+	"X-RapidAPI-Key": API_KEY,
 	"X-RapidAPI-Host": "gpt-summarization.p.rapidapi.com"
     }
 
